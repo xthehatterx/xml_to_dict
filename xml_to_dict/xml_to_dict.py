@@ -8,10 +8,7 @@ class XMLtoDict(object):
         return self.__to_dict(ET.fromstring(xml))
     
     def value_from_nest(self, pattern, nest):
-        if type(nest) is dict:
-            nest = nest
-        else:
-            nest = self.__to_dict(ET.fromstring(nest))
+        nest = nest if type(nest) is dict else self.parse(nest)
         for k, v in nest.items():
             match = re.search(pattern, k)
             if match:
@@ -28,8 +25,7 @@ class XMLtoDict(object):
             for dc in map(self.__to_dict, children):
                 for k, v in dc.items():
                     dd[k].append(v)
-            d = {t.tag: {k:v[0] if len(v) == 1 \
-                    else v for k, v in dd.items()}}
+            d = {t.tag: {k:v[0] if len(v) == 1 else v for k, v in dd.items()}}
         if t.attrib:
             d[t.tag].update(('@' + k, v) for k, v in t.attrib.items())
         if t.text:
