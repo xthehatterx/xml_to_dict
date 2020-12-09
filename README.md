@@ -34,11 +34,11 @@ sample_xml = (
     '</response>'
 )
 
-parser = XMLtoDict(sample_xml)
+parser = XMLtoDict()
 
-print(parser.parse()) # {'response': {'results': {'user': [{'name': 'Ezequiel', 'age': '33', 'city': 'San Isidro'}, {'name': 'Belén', 'age': '30', 'city': 'San Isidro'}]}}}
+print(parser.parse(sample_xml)) # {'response': {'results': {'user': [{'name': 'Ezequiel', 'age': '33', 'city': 'San Isidro'}, {'name': 'Belén', 'age': '30', 'city': 'San Isidro'}]}}}
 
-print(parser.from_nest('user')) # [{'name': 'Ezequiel', 'age': '33', 'city': 'San Isidro'}, {'name': 'Belén', 'age': '30', 'city': 'San Isidro'}]
+print(parser.value_from_nest('.*ser', sample_xml)) # [{'name': 'Ezequiel', 'age': '33', 'city': 'San Isidro'}, {'name': 'Belén', 'age': '30', 'city': 'San Isidro'}]
 ```
 
 ## Contributing
