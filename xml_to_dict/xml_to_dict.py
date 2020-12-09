@@ -29,7 +29,7 @@ class XMLtoDict(object):
                 for k, v in dc.items():
                     dd[k].append(v)
             d = {t.tag: {k:v[0] if len(v) == 1 \
-                                else v for k, v in dd.items()}}
+                    else v for k, v in dd.items()}}
         if t.attrib:
             d[t.tag].update(('@' + k, v) for k, v in t.attrib.items())
         if t.text:
