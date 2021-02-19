@@ -9,7 +9,7 @@ I just added the *from_nest* function, which lets you retrieve a value from the 
 ## Install
 
 ```bash
-pip3 install xml_to_dict --user
+pip install xml_to_dict
 ```
 
 ## Usage
